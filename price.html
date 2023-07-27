@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="expires" content="-1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Razua Hotspot - Price List</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="jquery.min.js"></script>
+    <script src="razua.js"></script>
+
+    <style>
+        .button {
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+            width: 100%;
+            outline: 0px;
+            color: white;
+            text-align: center;
+            cursor: pointer;
+            font-weight: 500;
+            text-decoration: none;
+            display: block;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- two other colors
+
+<body class="lite">
+<body class="dark">
+
+-->
+
+    $(if chap-id)
+    <form name="sendin" action="$(link-login-only)" method="post" style="display:none">
+        <input type="hidden" name="username" />
+        <input type="hidden" name="password" />
+        <input type="hidden" name="dst" value="$(link-orig)" />
+        <input type="hidden" name="popup" value="true" />
+    </form>
+
+    <script src="/md5.js"></script>
+    <script>
+        function doLogin() {
+            document.sendin.username.value = document.login.username.value;
+            document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+            document.sendin.submit();
+            return false;
+        }
+    </script>
+    $(endif)
+    <div class="ie-fixMinHeight">
+        <div class="main">
+            <div class="wrap animated fadeIn">
+
+                <a href="http://$(hostname)">
+                    <img class="logo" src="img/logo.png" alt="#" />
+                </a>
+
+                <table style="margin-top: 10px;">
+                    <tr>
+                        <td colspan="4" align="center">Voucher WiFi</td>
+                    </tr>
+                    <tr>
+                        <td>Nano</td>
+                        <td>Rp 1.000</td>
+                        <td align="center">2 Jam</td>
+                        <!-- <td align="center">∞</td> -->
+                    </tr>
+                    <tr>
+                        <td>Mikro</td>
+                        <td>Rp 2.000</td>
+                        <td align="center">6 Jam</td>
+                        <!-- <td align="center">∞</td> -->
+                    </tr>
+                    <tr>
+                        <td>Mini</td>
+                        <td>Rp 3.000</td>
+                        <td align="center">12 Jam</td>
+                        <!-- <td align="center">∞</td> -->
+                    </tr>
+                    <tr>
+                        <td>Harian</td>
+                        <td>Rp 5.000</td>
+                        <td align="center">1 Hari</td>
+                        <!-- <td align="center">2 GB</td> -->
+                    </tr>
+                    <tr>
+                        <td>Mingguan</td>
+                        <td>Rp 25.000</td>
+                        <td align="center">7 Hari</td>
+                        <!-- <td align="center">5 GB</td> -->
+                    </tr>
+                    <tr>
+                        <td>Bulanan</td>
+                        <td>Rp 75.000</td>
+                        <td align="center">30 Hari</td>
+                        <!-- <td align="center">15 GB</td> -->
+                    </tr>
+                    <tr>
+                        <td colspan="4" align="center">Kecepatan Sampai 2 Mbps</td>
+                    </tr>
+                </table>
+
+                <table style="margin-top: 10px;">
+                    <tr>
+                        <td colspan="3" align="center">Patungan Internet Rumahan</td>
+                    </tr>
+                    <tr>
+                        <td>Pribadi</td>
+                        <td align="center">Rp 70.000</td>
+                        <td align="center">2 Mbps*</td>
+                    </tr>
+                    <tr>
+                        <td>Pelajar</td>
+                        <td align="center">Rp 100.000</td>
+                        <td align="center">3 Mbps*</td>
+                    </tr>
+                    <tr>
+                        <td>Keluarga</td>
+                        <td align="center">Rp 150.000</td>
+                        <td align="center">5 Mbps*</td>
+                    </tr>
+                    <tr>
+                        <td>Bisnis</td>
+                        <td align="center">Rp 350.000</td>
+                        <td align="center">10 Mbps*</td>
+                    </tr>
+                    <tr>
+                        <td>Profesional</td>
+                        <td align="center">Rp 600.000</td>
+                        <td align="center">20 Mbps*</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" align="center">Biaya Pendaftaran Rp 50.000</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" align="center">Biaya Pemasangan Rp 150.000*</td>
+                    </tr>
+                </table>
+
+                <p class="info" style="margin-top: 30px;">
+                    <b>
+                        Whatsapp Admin
+                        :
+                        <a style="color: white;" href="https://wa.me/6285162974212" target="_blank">
+                            0851 6297 4212
+                        </a>
+                    </b>
+                </p>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

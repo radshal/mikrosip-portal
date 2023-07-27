@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="expires" content="-1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Voucher | Razua Hotspot</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/razua.css?v1">
+    <script src="jquery.min.js"></script>
+    <script src="razua.js"></script>
+
+</head>
+
+<body class="normal">
+
+    $(if chap-id)
+    <form name="sendin" action="$(link-login-only)" method="post" style="display:none">
+        <input type="hidden" name="username" />
+        <input type="hidden" name="password" />
+        <input type="hidden" name="dst" value="$(link-orig)" />
+        <input type="hidden" name="popup" value="true" />
+    </form>
+
+    <script src="/md5.js"></script>
+    <script>
+        function doLogin() {
+            document.sendin.username.value = document.login.username.value;
+            document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+            document.sendin.submit();
+            return false;
+        }
+    </script>
+    $(endif)
+    
+    <div class="ie-fixMinHeight">
+        <div class="main">
+            <div class="wrap animated fadeIn">
+
+                <a href="$(link-login)">
+                    <img class="logo" src="img/logo.png" alt="#" />
+                </a>
+
+                <p class="info">Internet Unlimited, Jaringan 24 Jam.</p>
+
+                <div>
+                    <div style="width: 50%; padding:5px; float: right;">
+                        <a class="button" href="login-member.html"
+                            style="border: 2px solid #3e4d59;background-color: #3e4d59;">
+                            Member
+                        </a>
+                    </div>
+                    <div style="width: 50%; padding:5px;">
+                        <a class="button" href="login-voucher.html"
+                            style="border: 2px solid #3e4d59;background-color: transparent;color:#3e4d59;">
+                            Voucher
+                        </a>
+                    </div>
+                </div>
+
+                <form id="form" name="login" autocomplete="off" action="$(link-login-only)" method="post" $(if chap-id) onSubmit="doLogin()"$(endif)>
+                    <input type="hidden" name="dst" value="$(link-orig)" />
+                    <input type="hidden" name="popup" value="true" />
+                    <input type="hidden" name="password" />
+                    $(if error)
+                    <p class="info $(if error)alert$(endif)" style="margin-top: 10px;background: red;color: white;border-radius: 4px;font-weight: bold;">
+                        <script type="text/javascript">
+                            var error = "$(error)";
+                            if (error == "simultaneous session limit reached") {
+                                document.write("Jumlah perangkat yang terhubung ke akun ini telah mencapai batas maksimal.");
+                            }
+                            else if (error == "invalid Calling-Station-Id") {
+                                document.write("$(username) tidak dapat digunakan dari perangkat ini.");
+                            }
+                            else if (error == "invalid password") {
+                                document.write("Password Salah");
+                            }
+                            else if (error == "no valid profile found") {
+                                document.write("Paket Sudah Kadaluarsa");
+                            }
+
+                            // Userman v7
+                            else if(error.search("reached") != -1) {
+                                document.write("Paket sudah habis.");
+                            }
+                            else if(error.search("no valid profile for this user") != -1) {
+                                document.write("Akun sudah kadaluarsa.");
+                            }
+                            else if(error.search("username doesn") != -1) {
+                                document.write("Akun tidak ditemukan.");
+                            }
+
+                            else document.write("$(error)")
+                        </script>
+                    </p>
+                    $(endif)
+
+                    <!-- <input style="font-family:monospace;margin: 10px 0px 0px 0px;text-align: center;padding-left: 20px;" name="username" id="username" type="text" value="$(username)" placeholder="Masukkan Kode Voucher" autocomplete="off" required/>
+                    <input style="display:none;" name="password" id="password" type="password" value="$(password)" placeholder="Password"/> -->
+
+                    <label style="margin-top: 10px;">
+                        <input style="text-align: center; padding-left: 20px;" id="username" name="username" type="text" value="$(username)" placeholder="Masukkan Kode Voucher" required="true"/>
+                    </label>
+
+                    <label style="display:none;">
+                        <img class="ico" src="img/password.svg" alt="#" />
+                        <input name="password" type="password" placeholder="Password"/>
+                    </label>
+
+                    <button class="button" type="button" style="font-weight: bold;margin-top: 10px;border: 2px solid #3e4d59;background-color: #3e4d59;" onclick="voucherLogin()">Gunakan Voucher</button>
+                    <!-- <input style="font-weight: bold;margin-top: 10px;" type="submit" class="button" value="Gunakan Voucher" /> -->
+
+                    <!-- <a class="button" href="https://laksa19.github.io/myqr/" style="background-color: darkcyan;border: 4px solid darkcyan;">
+                        Scan Voucher
+                    </a> -->
+                    
+                </form>
+
+                <p class="info" style="margin-top: 30px;">
+                    <b>Powered by MikroTik</b>
+                </p>
+
+            </div>
+        </div>
+    </div>
+
+    <script >
+        $(document).ready(function(){
+            $('#username').val('');
+        });
+        function voucherLogin() {
+
+            var code = $('#username').val();
+            if(~code.indexOf('@')){
+                username = code;
+            } else {
+                username = code+'@fitri.net';
+            }
+
+            alert(username);
+
+            $('#username').val(username);
+            $('#form').submit();
+
+        }
+    </script>
+
+</body>
+
+</html>

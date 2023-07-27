@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="expires" content="-1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Member | Razua Hotspot</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/razua.css">
+    <script src="jquery.min.js"></script>
+    <script src="razua.js"></script>
+</head>
+
+<body>
+
+    <div class="ie-fixMinHeight">
+        <div class="main">
+            <div class="wrap animated fadeIn">
+
+                <a href="$(link-login)">
+                    <img class="logo" src="img/logo.png" alt="#" />
+                </a>
+
+                <p class="info">Internet Unlimited, Jaringan 24 Jam.</p>
+
+                <div>
+                    <div style="width: 50%; padding:5px; float: right;">
+                        <a class="button" href="login-member.html"
+                            style="border: 2px solid #3e4d59;background-color: transparent;color:#3e4d59;">
+                            Member
+                        </a>
+                    </div>
+                    <div style="width: 50%; padding:5px;">
+                        <a class="button" href="login-voucher.html"
+                            style="border: 2px solid #3e4d59;background-color: #3e4d59;">
+                            Voucher
+                        </a>
+                    </div>
+                </div>
+
+                <form name="login" autocomplete="off" action="$(link-login-only)" method="post" $(if chap-id) onSubmit="doLogin()"$(endif)>
+                    <input type="hidden" name="dst" value="$(link-orig)" />
+                    <input type="hidden" name="popup" value="true" />
+                    <input type="hidden" name="password" />
+
+                    <label style="margin-top: 10px;">
+                        <img class="ico" src="img/user.svg" alt="#" />
+                        <input name="username" type="text" value="$(username)" placeholder="Username" required="true"/>
+                    </label>
+
+                    <label style="margin-top: 10px;">
+                        <img class="ico" src="img/password.svg" alt="#" />
+                        <input name="password" type="password" placeholder="Password"/>
+                    </label>
+
+                    <input style="margin-top: 10px;" type="submit" class="button" value="AKSES INTERNET" />
+                    
+                </form>
+
+                <p class="info" style="margin-top: 30px;">
+                    <b>Powered by MikroTik</b>
+                </p>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

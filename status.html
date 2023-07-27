@@ -1,0 +1,195 @@
+<html>
+
+<head>
+    $(if refresh-timeout)
+    <meta http-equiv="refresh" content="$(refresh-timeout-secs)">
+    $(endif)
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="expires" content="-1">
+    <title>Razua Hotspot - Status</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="jquery.min.js"></script>
+    <script src="razua.js"></script>
+    <script>
+        $(if advert-pending == 'yes')
+        var popup = '';
+
+        function focusAdvert() {
+            if (window.focus) popup.focus();
+        }
+
+        function openAdvert() {
+            popup = open('$(link-advert)', 'hotspot_advert', '');
+            setTimeout("focusAdvert()", 1000);
+        }
+        $(endif)
+
+        function openLogout() {
+            if (window.name != 'hotspot_status') return true;
+            open('$(link-logout)', 'hotspot_logout',
+                'toolbar=0,location=0,directories=0,status=0,menubars=0,resizable=1,width=280,height=250');
+            window.close();
+            return false;
+        }
+    </script>
+
+</head>
+
+<body $(if advert-pending=='yes' ) onLoad="openAdvert()" $(endif)>
+    <div class="ie-fixMinHeight">
+        <div class="main">
+            <div class="wrap animated fadeIn">
+
+                <a href="http://$(hostname)">
+                    <img class="logo" src="img/logo.png" alt="#" />
+                </a>
+
+                <h1>
+                    Terhubung ke Internet
+                </h1>
+
+                <form action="$(link-logout)" name="logout" onSubmit="return openLogout()">
+
+                    <table>
+                        <!-- <tr>
+                            <td>Server</td>
+                            <td style="text-align: right;">
+                                $(interface-name)
+                            </td>
+                        </tr> -->
+                        <tr>
+                            <td>Username</td>
+                            <td style="text-align: right;">
+                                <span class="username">$(username)</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Alamat IP</td>
+                            <td style="text-align: right;">
+                                $(ip)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Alamat MAC</td>
+                            <td style="text-align: right;">
+                                $(mac)
+                            </td>
+                        </tr>
+                    </table>
+
+                    <br>
+
+                    <!-- <button
+                        style="padding: 10px;border-radius: 4px;width: 100%;border: 0px;background-color: green;color: white;"
+                        type="button" onclick="window.location.replace('https://hotspot.razua.net/account?login=success');">
+                        Tetap Terhubung
+                    </button> -->
+
+                    $(if login-by-mac != 'yes')
+                        <input type="submit" style="margin-top:10px;background-color: darkred;" value="Putuskan Internet">
+                    $(endif)
+                    
+                    <br><br>
+<!-- 
+                    <p class="info" style="margin-top: 10px;">
+                        <b>SPACE IKLAN</b>
+                    </p>
+    
+                    <div style="margin-top: 10px;text-align: center;">
+                        <a href="https://my.domainesia.com/ref.php?u=21545" target="_blank">
+                            <img src="img/banner-domainesia.png" width="250" alt="Buat Website Dengan Sekali Klik" />
+                        </a>
+                    </div> -->
+
+                    <p class="info" style="margin-top: 10px;">
+                        <b>
+                            Whatsapp Admin
+                            :
+                            <a style="color: white;" href="https://wa.me/6285162974212" target="_blank">
+                                0851 6297 4212
+                            </a>
+                        </b>
+                    </p>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script >
+        $(document).ready(function(){
+
+            $('.convert').each(function(data) {
+                var bytes = $(this).html();
+                $(this).html(bytesToSize(bytes).replace('.00', ''));
+            });
+            $('.convert-g').each(function(data) {
+                var bytes = $(this).html();
+                $(this).html(Math.round(bytes / 1000000000, 2) + 'GB');
+            });
+            $('.convert-m').each(function(data) {
+                var bytes = $(this).html();
+                $(this).html(Math.round(bytes / 1000000, 2) + 'MB');
+            });
+
+            $('.convert-time').each(function(data) {
+                var time = $(this).html();
+                var times = [];
+                var retur = '';
+                if(time.includes("w")){
+                    times['w'] = time.split('w')[0];
+                    time = time.replace(times['w']+'w','');
+                    times['w'] *= 7; } else { times['w'] = 0;
+                }
+                if(time.includes("d")){
+                    times['d'] = parseInt(time.split('d')[0]) + parseInt(times['w']);
+                    return $(this).html(times['d'] + ' Hari');
+                }
+
+                if(time.includes("h")){
+                    times['h'] = time.split('h')[0];
+                    return $(this).html(times['h'] + ' Jam');
+                } else {
+                    // retur += '00:'; 
+                }
+
+                if(time.includes("m")){
+                    times['m'] = time.split('m')[0];
+                    return $(this).html(times['m'] + ' Menit');
+                }
+
+                if(time.includes("s")){
+                    times['s'] = time.split('s')[0];
+                    return $(this).html(times['s'] + ' Detik');
+                } else {
+                    // retur += '00';
+                }
+
+                return $(this).html('Unlimited');
+            });
+        });
+
+        function bytesToSize(bytes) {
+
+            if(bytes == 0) return 'Unlimited';
+
+            if(bytes < 1000) return bytes + 'B';
+
+            var kilo = bytes / 1000;
+            if(kilo <= 999) return kilo.toFixed(0) + ' KB';
+            
+            var mega = kilo / 1000;
+            if(mega <= 999) return mega.toFixed(0) + ' MB';
+
+            var giga = mega / 1000;
+            if(giga <= 999) return giga.toFixed(0) + ' GB';
+
+            var tera = giga / 1000;
+            return tera.toFixed(2) + ' TB';
+        }
+    </script>
+</body>
+
+</html>

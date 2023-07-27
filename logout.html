@@ -1,0 +1,56 @@
+<head>
+    <html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />   
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="expires" content="-1">
+<title>Razua Hotspot - Logout</title>
+<link rel="stylesheet" href="css/style.css">
+<script>
+    function openLogin() {
+	if (window.name != 'hotspot_logout') return true;
+	open('$(link-login)', '_blank', '');
+	window.close();
+	return false;
+    }
+</script>
+</head>
+
+<body>
+    <div class="ie-fixMinHeight">
+        <div class="main">
+            <div class="wrap">
+                 
+                <a href="http://$(hostname)">
+                    <img class="logo" src="img/logo.png" alt="#" />
+                </a>
+                 
+                <!-- <h1>Berhasil Keluar</h1> 
+                <p class="info $(if error)alert$(endif)">
+                    Laporan Sesi
+                </p> -->
+                <table>  
+                    <tr><td>Terhubung</td><td class="text-right">$(uptime)</td></tr>
+                    <tr><td>Upload</td><td class="text-right">$(bytes-in-nice)</td></tr>
+                    $(if remain-bytes-in != '')
+                    <tr><td>Sisa Upload</td><td class="text-right">$(remain-bytes-in)</td></tr>
+                    $(endif)
+                    <tr><td>Download</td><td class="text-right">$(bytes-out-nice)</td></tr>
+                    $(if remain-bytes-out != '')
+                    <tr><td>Sisa Download</td><td class="text-right">$(remain-bytes-out)</td></tr>
+                    $(endif)
+                    <tr><td>Alamat IP</td><td class="text-right">$(ip)</td></tr>
+                    <tr><td>Alamat MAC</td><td class="text-right">$(mac)</td></tr>
+                </table>
+                
+                <!-- <br> -->
+
+                <form action="$(link-login)" name="login" onSubmit="return openLogin()">
+                    <input style="margin-top: 10px;" type="submit" value="Masuk Lagi">
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
